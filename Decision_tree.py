@@ -3,14 +3,14 @@
 # Fist 2 Columns is the Features
 # The last Column is the Label
 # Each Line is an example
-training_data = [["Green", 3, "Mango"],
-                 ["Yellow", 3, "Mango"],
-                 ["Red", 1, "Grape"],
-                 ["Red", 1, "Grape"],
-                 ["Yellow", 3, 'Lemon'],]
+training_data = [["Verde", 3, "Manga"],
+                 ["Amarelo", 3, "Manga"],
+                 ["Vermelho", 1, "Uva"],
+                 ["Vermelho", 1, "Uva"],
+                 ["Amarelo", 3, 'Limao'],]
 
 # Print the Tree - used only to print
-header = ["color", "diameter", "label"]
+header = ["cor", "tamanho", "label"]
 
 def unique_vals(rows, col):
     """Find the unique values for the column in the dataset
@@ -34,7 +34,7 @@ def class_counts(rows):
 def is_numeric(value):
     """Test if a value is Numeric.
     Example: is_numeric(7)
-             is_numeric("Red")"""
+             is_numeric("Vermelho")"""
     return isinstance(value, int) or isinstance(value, float)
 
 
@@ -42,7 +42,7 @@ class Question:
     """A Question is used to partition a dataset
 
     This Class just records a 'Colum Number' (e.g., 0 for color) and a
-    'Colum value' (e.g., Green). The 'match' method is used to compare
+    'Colum value' (e.g., Verde). The 'match' method is used to compare
     the feature value in an example to the feature value stored in the
     question.  """
     def __init__(self, column, value):
@@ -64,7 +64,7 @@ class Question:
         condition =  "=="
         if is_numeric(self.value):
             condition = ">="
-        return "Is {} {} {}".format(header[self.column], condition, str(self.value) )
+        return "{} é {} {}".format(header[self.column], condition, str(self.value) )
 
 
 def partition(rows, question):
@@ -133,7 +133,7 @@ def find_best_split(rows):
 class Leaf:
     """A leaf node classifies data.
 
-    This holds a dictionary of class (e.g., 'Mango') -> number of times
+    This holds a dictionary of class (e.g., 'Manga') -> number of times
     it appears in the rows from the training data that reach this leaf"""
 
     def __init__(self, rows):
@@ -227,11 +227,11 @@ if __name__ == "__main__":
 
     # Evaluate
     testing_data = [
-                    ["Green", 3, "Mango"],
-                    ["Yellow", 4, "Mango"],
-                    ["Red", 2, "Grape"],
-                    ["Red", 1, "Grape"],
-                    ["Yellow", 3, "Lemon"],
+                    ["Verde", 3, "Manga"],
+                    ["Amarelo", 4, "Manga"],
+                    ["Vermelho", 2, "Uva"],
+                    ["Vermelho", 1, "Uva"],
+                    ["Amarelo", 3, "Limao"],
     ]
 
     for row in testing_data:
